@@ -1,27 +1,61 @@
 body {
   background: #111;
   color: white;
-  text-align: center;
   font-family: Arial;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin-top: 15px;
 }
 
 .game-container {
   display: flex;
   justify-content: center;
   gap: 20px;
+  flex-wrap: wrap;
 }
-
-h1 {
-  text-align: left;
-  margin-left: 35%;
-}
-
 
 canvas {
   background: #000;
   border: 2px solid white;
+  box-shadow: 0 0 20px #00ffff55;
 }
 
 .info {
   text-align: left;
+}
+
+.mobile-controls {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mobile-controls button {
+  padding: 12px 18px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  background: #222;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.mobile-controls button:active {
+  background: #555;
+  transform: scale(0.95);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  canvas {
+    width: 180px;
+    height: 300px;
+  }
 }

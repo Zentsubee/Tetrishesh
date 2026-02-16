@@ -2,23 +2,38 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tetris Pro</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Tetris🎮</h1>
+
+  <h1>Tetris 🎮</h1>
 
   <div class="game-container">
     <canvas id="tetris" width="240" height="400"></canvas>
+
     <div class="info">
       <p>Score: <span id="score">0</span></p>
       <p>Level: <span id="level">1</span></p>
-      <p>Kontrol Pake Keyboard:</p>
+      <p><b>Keyboard:</b></p>
       <p>⬅ ➡ Move</p>
-      <p>⬇ Kebawah</p>
+      <p>⬇ Drop</p>
       <p>⬆ Rotate</p>
       <p>P Pause</p>
     </div>
+  </div>
+
+  <!-- Mobile Controls -->
+  <div class="mobile-controls">
+    <button onclick="playerMove(-1)">⬅</button>
+    <button onclick="playerRotate()">⟳</button>
+    <button onclick="playerMove(1)">➡</button>
+  </div>
+
+  <div class="mobile-controls">
+    <button onclick="playerDrop()">⬇ Drop</button>
+    <button onclick="paused = !paused">⏸ Pause</button>
   </div>
 
   <script src="script.js"></script>

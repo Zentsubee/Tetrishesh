@@ -7,13 +7,13 @@ const levelElement = document.getElementById("level");
 
 const colors = [
   null,
-  "cyan",    // I
-  "blue",    // J
-  "orange",  // L
-  "yellow",  // O
-  "green",   // S
-  "purple",  // T
-  "red"      // Z
+  "cyan",
+  "blue",
+  "orange",
+  "yellow",
+  "green",
+  "purple",
+  "red"
 ];
 
 function createMatrix(w, h) {
@@ -38,15 +38,12 @@ function drawMatrix(matrix, offset) {
   matrix.forEach((row, y) => {
     row.forEach((value, x) => {
       if (value !== 0) {
-
-        // Gradient biar nggak polos
         const gradient = context.createLinearGradient(
           x + offset.x,
           y + offset.y,
           x + offset.x + 1,
           y + offset.y + 1
         );
-
         gradient.addColorStop(0, "white");
         gradient.addColorStop(0.3, colors[value]);
         gradient.addColorStop(1, "black");
@@ -54,7 +51,6 @@ function drawMatrix(matrix, offset) {
         context.fillStyle = gradient;
         context.fillRect(x + offset.x, y + offset.y, 1, 1);
 
-        // Outline putih tipis
         context.strokeStyle = "#ffffff55";
         context.lineWidth = 0.05;
         context.strokeRect(x + offset.x, y + offset.y, 1, 1);
@@ -62,7 +58,6 @@ function drawMatrix(matrix, offset) {
     });
   });
 }
-
 
 function draw() {
   context.fillStyle = "#000";
@@ -202,13 +197,12 @@ function update(time=0) {
 
   if (score >= level * 100) {
     level++;
-    dropInterval *= 0.85; // lebih smooth naik speed
+    dropInterval *= 0.85;
   }
 
   draw();
   requestAnimationFrame(update);
 }
-
 
 document.addEventListener("keydown", event => {
   if (event.key === "ArrowLeft") playerMove(-1);
