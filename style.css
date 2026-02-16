@@ -1,0 +1,27 @@
+body {
+  background: #111;
+  color: white;
+  text-align: center;
+  font-family: Arial;
+}
+
+.game-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+h1 {
+  text-align: left;
+  margin-left: 35%;
+}
+
+
+canvas {
+  background: #000;
+  border: 2px solid white;
+}
+
+.info {
+  text-align: left;
+}
