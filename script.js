@@ -4,6 +4,7 @@ context.scale(20, 20);
 
 const scoreElement = document.getElementById("score");
 const levelElement = document.getElementById("level");
+const pauseBtn = document.getElementById("pauseBtn");
 
 const colors = [
   null,
@@ -152,6 +153,7 @@ function playerReset() {
     createPiece(pieces[Math.floor(Math.random()*pieces.length)]);
   player.pos.y = 0;
   player.pos.x = 4;
+
   if (collide(arena, player)) {
     arena.forEach(row => row.fill(0));
     score = 0;
@@ -184,15 +186,7 @@ function update(time=0) {
   dropCounter += deltaTime;
 
   if (dropCounter > dropInterval) {
-    player.pos.y += 1;
-    if (collide(arena, player)) {
-      player.pos.y--;
-      merge(arena, player);
-      playerReset();
-      arenaSweep();
-      updateScore();
-    }
-    dropCounter = 0;
+    playerDrop();
   }
 
   if (score >= level * 100) {
@@ -204,14 +198,30 @@ function update(time=0) {
   requestAnimationFrame(update);
 }
 
+/* KEYBOARD */
 document.addEventListener("keydown", event => {
   if (event.key === "ArrowLeft") playerMove(-1);
   else if (event.key === "ArrowRight") playerMove(1);
   else if (event.key === "ArrowDown") playerDrop();
   else if (event.key === "ArrowUp") playerRotate();
-  else if (event.key === "p" || event.key === "P")
-    paused = !paused;
+  else if (event.key === "p" || event.key === "P") togglePause();
 });
+
+/* BUTTON EVENTS */
+document.getElementById("leftBtn").addEventListener("click", () => playerMove(-1));
+document.getElementById("rightBtn").addEventListener("click", () => playerMove(1));
+document.getElementById("rotateBtn").addEventListener("click", () => playerRotate());
+document.getElementById("dropBtn").addEventListener("click", () => playerDrop());
+pauseBtn.addEventListener("click", togglePause);
+
+function togglePause() {
+  paused = !paused;
+  if (paused) {
+    pauseBtn.innerHTML = "▶ Start";
+  } else {
+    pauseBtn.innerHTML = "⏸ Pause";
+  }
+}
 
 const arena = createMatrix(12,20);
 const player = { pos:{x:0,y:0}, matrix:null };
